@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a href="{% url 'user_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    <div class="post">
+        <h1>Name: {{ user.name }}</h1>
+        <p>Vorname: {{ user.vorname|linebreaksbr }}</p>
+        <p>Erstellt am: {{ user.created_date|date:"d M Y" }}</p>
+        <p>Verguenstigung: {{ user.verguenstigung|linebreaksbr }}</p>
+    </div>
+{% endblock %}

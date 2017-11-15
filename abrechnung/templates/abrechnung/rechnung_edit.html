@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>New Rechnung</h1>
+    <form method="POST" class="user-form">{% csrf_token %}
+
+        <div class="row">
+          <div class="col-sm-6">{{ form.as_p }}</div>
+          <div class="col-sm-4">
+              <script>
+                document.getElementById('id_betrag').value = 0;
+
+                function nEintritt() {
+                    oldNum = parseFloat(document.getElementById("id_betrag").value);
+                    newNum = oldNum + 9.90;
+                    document.getElementById('id_betrag').value = newNum;
+                    document.getElementById('id_leistung').value += 'Eintritt normal; ';
+                    return false;
+                }
+                function vEintritt() {
+                    oldNum = parseFloat(document.getElementById("id_betrag").value);
+                    newNum = oldNum + 8.90;
+                    document.getElementById('id_betrag').value = newNum;
+                    document.getElementById('id_leistung').value += 'Eintritt verguenstigt; ';
+                    return false;
+                }
+                function Schuhe() {
+                    oldNum = parseFloat(document.getElementById("id_betrag").value);
+                    newNum = oldNum + 3.50;
+                    document.getElementById('id_betrag').value = newNum;
+                    document.getElementById('id_leistung').value += 'Schuhe; ';
+                    return false;
+                }
+                function Chalk() {
+                    oldNum = parseFloat(document.getElementById("id_betrag").value);
+                    newNum = oldNum + 1.50;
+                    document.getElementById('id_betrag').value = newNum;
+                    document.getElementById('id_leistung').value += 'Chalk; ';
+                    return false;
+                }
+            </script>
+              <div class="btn-group-vertical" role="group" aria-label="Wählen Sie">
+                <button class="btn btn-warning" type="button" onclick="nEintritt()">Eintritt normal</button>
+                <button class="btn btn-warning" type="button" onclick="vEintritt()">Eintritt vergünstigt</button>
+                <button class="btn btn-warning" type="button" onclick="Schuhe()">Schuhe</button>
+                <button class="btn btn-warning" type="button" onclick="Chalk()">Chalk</button>
+                </div>
+               </div>
+          <div class="col-sm-2"><button class="btn btn-primary btn-lg" type="submit" class="save btn btn-default">Bezahlt</button></div>
+        </div>
+
+
+    </form>
+{% endblock %}

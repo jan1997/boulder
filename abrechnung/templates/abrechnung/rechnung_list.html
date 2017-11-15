@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% load money %}
+    <a href="{% url 'rechnung_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    <div class="container">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Kunde</th>
+                <th>Leistungen</th>
+                <th>Betrag</th>
+                <th>Datum</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for Rechnung in rechnungen %}
+              <tr>
+                <td>{{ Rechnung.user_id }}</td>
+                <td>{{ Rechnung.leistung }}</td>
+                <td>{{ Rechnung.betrag | money}}</td>
+                <td>{{ Rechnung.created_date|date:"d M Y" }}</td>
+                <td><a href="{% url 'rechnung_delete' pk=Rechnung.pk %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+{% endblock %}

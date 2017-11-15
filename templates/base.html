@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/cfea684622.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+    <title>{% block title %}Boulder now!{% endblock %}</title>
+</head>
+<body>
+<header>
+    <div class="jumbotron text-center bimage">
+        <h1>Boulder now!</h1>
+    </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+<nav class="navbar navbar-inverse sidebar" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-sidebar-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand " href="{% url 'home' %}">Boulder</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                {% if user.is_authenticated %}
+                <li ><a href="{% url 'home' %}">Home<span style="font-size:16px;"
+                                                                        class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a>
+                </li>
+
+
+                    <li><a href="{% url 'user_list' %}">Kunden<span style="font-size:16px;"
+                                                                class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a>
+                    </li>
+
+                <li><a href="{% url 'post_list' %}">News<span style="font-size:16px;"
+                                              class="pull-right hidden-xs showopacity glyphicon glyphicon-globe"></span></a>
+                </li>
+                 <li><a href="{% url 'rechnung_list' %}">Rechnungen<span style="font-size:16px;"
+                                              class="pull-right hidden-xs showopacity glyphicon glyphicon-usd"></span></a>
+                </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login<span style="font-size:16px;"
+                                              class="pull-right hidden-xs showopacity glyphicon glyphicon-log-in"></span></a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="col-md-10">
+    <div class="jumbotron">
+    <img src="{% static "img/bouldern.png" %}" class="rounded float-left logo" alt="image">
+        <main class="test">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </main>
+    </div>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+</div>
+</body>
+</html>

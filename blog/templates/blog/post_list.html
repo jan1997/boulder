@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% load static %}
+    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h2 id="post_title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <h4>{{ post.text|linebreaksbr }}</h4>
+        </div>
+    {% endfor %}
+{% endblock %}
